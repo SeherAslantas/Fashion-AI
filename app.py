@@ -1,4 +1,4 @@
-
+import os
 import streamlit as st
 import pickle
 import numpy as np
@@ -10,7 +10,7 @@ model = load_model("fashion_model.h5", compile=False)
 
 features = np.array(pickle.load(open("Images_features.pkl", "rb")))
 filenames = pickle.load(open("filenames.pkl", "rb"))
-
+filenames=[os.path.join("images",os.path.basename(f.replace("\\","/"))) for f in filenames]
 neighbors = NearestNeighbors(
     n_neighbors=6,
     algorithm="brute",
